@@ -23,10 +23,12 @@ build:
 
 deploy:
       stage: deploy
+      before_script:
+        - git checkout master
       script:
         - git remote add heroku https://fabiofont.alexandre:$heroku@git.heroku.com/demoautomationtest.git
         - git config user.name "FabioFontana"
-        - git push heroku --all
+        - git push heroku master -f
       environment:
         name: producao
         url: https://demoautomationtest.herokuapp.com/
