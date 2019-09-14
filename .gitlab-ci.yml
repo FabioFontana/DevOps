@@ -1,7 +1,7 @@
 image: maven:3.3.9-jdk-8
 
 stages:
- - validation
+ - validate
  - test
  - build
  - artifact
@@ -12,12 +12,12 @@ validate:
   script:
     - mvn validate
 
-unit-test:
+test:
     stage: test
     script:
       -   mvn test
 
-building:
+build:
   stage: build
   script:
     - mvn package
