@@ -4,7 +4,6 @@ stages:
  - validate
  - test
  - build
- - artifact
  - deploy
 
 validate:
@@ -21,4 +20,17 @@ build:
   stage: build
   script:
     - mvn package
+
+deploy:
+      stage: deploy
+      script:
+        - git remote add heroku https://fabiofont.alexandre:$heroku@git.heroku.com/demoautomationtest.git
+        - git push heroku master
+      environment:
+        name: producao
+        url: https://demoautomationtest.herokuapp.com/
+      only:
+        - master
+      when: manual
+
 
